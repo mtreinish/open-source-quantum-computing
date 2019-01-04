@@ -17,6 +17,8 @@
 % Color stuff
 \usepackage{color}
 \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{empheq}
 \usepackage[braket, qm]{qcircuit}
 \usepackage{tikz}
 \usepackage{gensymb}
@@ -82,6 +84,8 @@
     % All my cryptos broke
 \end{frame}
 
+\newcommand{\iu}{{i\mkern1mu}}
+
 \begin{frame}
     \includegraphics[width=\textwidth]{Veda_AD2314.png}
 \end{frame}
@@ -114,6 +118,14 @@
     \includegraphics[width=\textwidth]{timeline.png}
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{What is Qiskit?}
+    \begin{itemize}
+        \item Toolkit
+    \end{itemize}
+\end{frame}
+
 \begin{frame}
     \frametitle{Qiskit}
     \centering
@@ -123,45 +135,114 @@
 \section{Quantum Information Theory}
 \begin{frame}
     \frametitle{The Qubit}
+    \begin{columns}
+        \column{.4\textwidth}
+            \begin{itemize}
+                \item Bloch
+                \item Measure along Z
+            \end{itemize}
+        \column{.6\textwidth}
+            \includegraphics[width=\textwidth]{bloch_angles.png}
+    \end{columns}
 \end{frame}
 
-\subsection{Quantum Gates}
+\begin{frame}
+    \frametitle{Multiple Qubits}
+
+\end{frame}
+
+\subsection{Quantum Gates and Quantum Circuits}
 \begin{frame}
     \frametitle{Quantum Gates}
 \end{frame}
 
 \begin{frame}
-\begin{equation*}
-    \Qcircuit @C=0.5em @R=0.0em @!R {
-	 	\lstick{\ket{0}} & \gate{X} & \qw & \qw\\
-	 }
-\end{equation*}
-
-\begin{equation*}
-    \Qcircuit @C=0.5em @R=0.0em @!R {
-	 	\lstick{\ket{0}} & \gate{Y} & \qw & \qw\\
-	 }
-\end{equation*}
-
-\begin{equation*}
-    \Qcircuit @C=0.5em @R=0.0em @!R {
-	 	\lstick{\ket{0}} & \gate{Z} & \qw & \qw\\
-	 }
-\end{equation*}
+    \begin{columns}[onlytextwidth]
+        \begin{column}{.333\textwidth}
+            \centering
+            \textbf{Gate}
+            \begin{equation*}
+                \Qcircuit @C=0.5em @R=0.0em @!R {
+	 	            \lstick{\ket{0}} & \gate{X} & \qw & \qw\\
+            	}
+            \end{equation*} \\
+            \begin{equation*}
+                \Qcircuit @C=0.5em @R=0.0em @!R {
+    	         	\lstick{\ket{0}} & \gate{Y} & \qw & \qw\\
+    	        }
+            \end{equation*} \\
+            \begin{equation*}
+                \Qcircuit @C=0.5em @R=0.0em @!R {
+    	         	\lstick{\ket{0}} & \gate{Z} & \qw & \qw\\
+    	        }
+            \end{equation*}
+        \end{column}
+        \begin{column}{.333\textwidth}
+            \centering
+            \textbf{Matrix Form}
+            \[\begin{bmatrix}
+                0 & 1\\
+                1 & 0 \\
+            \end{bmatrix}\]\\
+            \[\begin{bmatrix}
+                0 & -\iu \\
+                \iu & 0 \\
+            \end{bmatrix}\] \\
+            \[\begin{bmatrix}
+                1 & 0 \\
+                0 & -1\\
+            \end{bmatrix}\]
+        \end{column}
+        \begin{column}{.333\textwidth}
+            \centering
+            \textbf{Bloch Sphere}
+            \includegraphics[width=\textwidth]{gate_x_bloch.png}\\
+            \includegraphics[width=\textwidth]{gate_z_bloch.png}\\
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Hadamard Gate}
+    \frametitle{Superposition and Hadamard Gate}
+    \begin{columns}
+        \column{.5\textwidth}
+        \begin{equation*}
+            \Qcircuit @C=0.5em @R=0.0em @!R {
+	 	        \lstick{\ket{0}} & \gate{H} & \qw & \qw\\
+    	     }
+        \end{equation*}
+        \column{.5\textwidth}
+        \[\frac{1}{\sqrt{2}} \begin{bmatrix}
+            1 & 1 \\
+            1 & -1 \\
+        \end{bmatrix}\]
+    \end{columns}
+    \includegraphics[width=\textwidth]{gate_h_bloch.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Phase}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Controlled Not Gate}
+
     \begin{equation*}
-        \Qcircuit @C=0.5em @R=0.0em @!R {
-	 	    \lstick{\ket{0}} & \gate{H} & \qw & \qw\\
-    	 }
+        \Qcircuit {
+            \lstick{\ket{0}}  & \ctrl{1} & \rstick{\ket{0}} \qw \\ 
+            \lstick{a\ket{0} + b\ket{1}} &  \targ & \rstick{a\ket{0} + b\ket{1}} \qw \\
+    }
     \end{equation*}
 
-\end{frame}
-
-\begin{frame}
-    \frametitle{Multiple Qubits}
+    \begin{equation*}
+        \Qcircuit {
+            \lstick{\ket{1}} & \ctrl{1} & \rstick{\ket{1}} \qw\\ 
+            \lstick{a\ket{0} + b\ket{1}} & \targ & \rstick{b\ket{0} + a\ket{1}} \qw\\
+    }
+    \end{equation*}
+    \centering
+    \textbf{CNOT flips the \textit{target} bit if the \textit{control} bit is 1}
 \end{frame}
 
 \begin{frame}
@@ -180,17 +261,51 @@
 
 \section{Example Application}
 \begin{frame}
-    \frametitle{Bernstein-Vazirani Algorithm}
+    \frametitle{Bernstein-Vazirani Algorithm\footnotemark}
+    \begin{columns}
+        \column{.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{the_oracle.jpg} \\
+            \large \textbf{The Oracle}
+        \column{.7\textwidth}
+        Input (query)\\
+        $\Longleftarrow X_{n-1} \dotsb \ X_{1} X_{0} $\\
+        \vspace{1.5em}
+        Secret Bitstring\\
+        $ \boxed{S_{n-1} \dotsb S_{1} S_{0}} $\\
+        \vspace{1.5em} 
+        Output (result)\\ 
+		$\Longrightarrow X_{n-1}S_{n-1} \oplus \dotsb X_{1}S_{1} \oplus X_{0}S_{0} $\\
+    \end{columns}
+    \vspace{3em}
+    \footnotetext[1]{E. Bernstein \& U. Vazirani, STOC, 93}
 \end{frame}
 
 \begin{frame}
     \frametitle{Classical Oracle}
-    
-
+	\begin{columns}
+		\column{.3\textwidth}
+              \centering
+              \includegraphics[width=\textwidth]{the_oracle.jpg}
+		\column{.7\textwidth}
+			O(n)
+	\end{columns}
 \end{frame}
 
 \begin{frame}
     \frametitle{Quantum Oracle}
+	\begin{columns}   
+          \column{.3\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{quantum_oracle.jpg}
+          \column{.7\textwidth}
+			$O(1)$
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Phase Kickback}
+
 \end{frame}
 
 \begin{frame}
@@ -230,10 +345,9 @@
             classical computers
         \item It's not just in labs anymore, quantum computing is accessible by
             everyone now
-        \item But, it's very early for quantum computers
+        \item It's still very early for quantum computers
         \item Open source software is playing a key role early on
     \end{itemize}
-
 \end{frame}
 
 \section{Questions?}
