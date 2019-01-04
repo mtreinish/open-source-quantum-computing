@@ -1,4 +1,3 @@
-# Open Source Quantum Computing
 ============================================
 Open Source Quantum Computing - Presentation
 ============================================
