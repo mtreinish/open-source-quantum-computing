@@ -121,13 +121,21 @@
 
 \begin{frame}
     \frametitle{What is Qiskit?}
-    \begin{itemize}
-        \item Toolkit
-    \end{itemize}
+    \begin{columns}
+        \column{.5\textwidth}
+            \begin{itemize}
+                \item SDK for working with Noisy Intermediate-Scale Quantum (NISQ) computers
+                \item Provides a Python interface to write quantum programs
+                \item Apache 2.0 License
+                \item 
+            \end{itemize}
+        \column{.5\textwidth}
+            \includegraphics[width=\textwidth]{qiskit_logo.png}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Qiskit}
+    \frametitle{Qiskit Elements}
     \centering
     \includegraphics[width=.9\textwidth]{qiskit-components.jpeg}
 \end{frame}
@@ -138,17 +146,24 @@
     \begin{columns}
         \column{.4\textwidth}
             \begin{itemize}
-                \item Bloch
+                \item The bloch 
                 \item Measure along Z
+                \item 
             \end{itemize}
         \column{.6\textwidth}
+            \centering
+            \textbf{Bloch Sphere:}
             \includegraphics[width=\textwidth]{bloch_angles.png}
     \end{columns}
 \end{frame}
 
 \begin{frame}
     \frametitle{Multiple Qubits}
+    
+\end{frame}
 
+\begin{frame}
+    \frametitle{The Complexity and Power of Quantum Information}
 \end{frame}
 
 \subsection{Quantum Gates and Quantum Circuits}
@@ -221,7 +236,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Phase}
+    \frametitle{Qubit Phase}
 
 \end{frame}
 
@@ -247,9 +262,10 @@
 
 \begin{frame}
     \frametitle{Quantum Circuits}
+    \textbf{Putting all together you build a circuit like:}
     \begin{equation*}
         \Qcircuit @C=0.5em @R=0.0em @!R {
-        \lstick{q0_{2}: \ket{0}} & \qw & \gate{H} & \ctrl{1} & \gate{X} & \meter & \qw & \qw & \qw & \qw\\
+        \lstick{q0_{2}: \ket{0}} & \gate{X} & \gate{H} & \ctrl{1} & \qw & \meter & \qw & \qw & \qw & \qw\\
         \lstick{q0_{1}: \ket{0}} & \gate{X} & \gate{H} & \targ & \qw & \qw & \meter & \qw & \qw\\
         \lstick{q0_{0}: \ket{0}} & \qw & \gate{H} & \qw & \qw & \qw & \qw & \meter & \qw & \qw\\
 	 	\lstick{c0_{2}: 0} & \cw & \cw & \cw & \cw & \cw \cwx[-3] & \cw & \cw & \cw & \cw\\
@@ -282,14 +298,30 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Classical Oracle}
+    \frametitle{Optimal Classical Oracle}
 	\begin{columns}
-		\column{.3\textwidth}
-              \centering
-              \includegraphics[width=\textwidth]{the_oracle.jpg}
-		\column{.7\textwidth}
-			O(n)
-	\end{columns}
+        \begin{column}{.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{the_oracle.jpg}
+        \end{column}
+        \begin{column}{.7\textwidth}
+            \begin{flushleft}
+            \[\left \{
+                \begin{array}{lr}
+                    X = 1\>0 \dotsb 0\>0 & \color{openstack} (2^{n-1})\\
+                    X = 0\>1 \dotsb 0\>0 & \color{openstack} (2^{n-2})\\
+                   \vdots  \\
+                    X = 0\>0 \dotsb 1\>0 & \color{openstack} (2)\\
+                    X = 0\>0 \dotsb 0\>1  & \color{openstack} (1)
+                 \end{array}
+               \right.
+           \]
+            \end{flushleft}
+            \begin{center}
+            \large \textbf{The ideal classical oracle is $\mathcal{O}(n)$}
+            \end{center}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -305,12 +337,29 @@
 
 \begin{frame}
     \frametitle{Phase Kickback}
-
+    \begin{equation*}
+        \Qcircuit {
+            \lstick{\ket{0}} & \gate{H} \barrier[-1.65em]{1} & \ctrl{1} \barrier[-1.65em]{1} & \gate{H} & \rstick{\ket{1}} \qw\\ 
+            \lstick{\ket{1}} & \gate{H} & \targ & \gate{H} & \rstick{\ket{1}} \qw\\
+    }
+    \end{equation*}
 \end{frame}
 
 \begin{frame}
     \frametitle{Implementing a Quantum Oracle}
-
+    \begin{equation*}
+      \Qcircuit @C=0.5em @R=0.0em @!R {
+    	   \lstick{q_{0}: \ket{0}} & \qw & \qw \barrier{4} & \gate{H} & \qw \barrier{4} & \ctrl{4} & \qw & \qw \barrier{4} & \gate{H} & \qw \barrier[-1.15em]{4} & \qw & \qw & \qw & \meter & \qw & \qw\\
+    	   \lstick{q_{1}: \ket{0}} & \qw & \qw & \gate{H} & \qw & \qw & \qw & \qw & \gate{H} & \qw & \qw & \qw & \meter & \qw & \qw & \qw\\
+    	   \lstick{q_{2}: \ket{0}} & \qw & \qw & \gate{H} & \qw & \qw & \qw & \qw & \gate{H} & \qw & \qw & \meter & \qw & \qw & \qw & \qw\\
+    	   \lstick{q_{3}: \ket{0}} & \qw & \qw & \gate{H} & \qw & \qw & \ctrl{1} & \qw & \gate{H} & \qw & \meter & \qw & \qw & \qw & \qw & \qw\\
+    	   \lstick{tmp_{0}: \ket{0}} & \gate{X} & \qw & \gate{H} & \qw & \targ & \targ & \qw & \gate{H} & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
+           \lstick{res_{0}: 0} & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-5] & \cw & \cw & \rstick{1}\\
+    	   \lstick{res_{1}: 0} & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-5] & \cw & \cw & \cw & \rstick{0}\\
+    	   \lstick{res_{2}: 0} & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-5] & \cw & \cw & \cw & \cw & \rstick{0}\\
+    	   \lstick{res_{3}: 0} & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-5] & \cw & \cw & \cw & \cw & \cw & \rstick{1}\\
+    	 }
+    \end{equation*} 
 \end{frame}
 
 \begin{frame}
@@ -328,14 +377,14 @@
 \begin{frame}
     \frametitle{Other Open Source Tools}
     \begin{itemize}
-        \item https://github.com/rigetticomputing/pyquil
-        \item https://github.com/ProjectQ-Framework/ProjectQ
-        \item https://github.com/quantumlib/Cirq
-        \item https://github.com/qutip/qutip
-        \item https://github.com/XanaduAI/strawberryfields
+        \item \href{https://github.com/rigetticomputing/pyquil}{https://github.com/rigetticomputing/pyquil}
+        \item \href{https://github.com/ProjectQ-Framework/ProjectQ}{https://github.com/ProjectQ-Framework/ProjectQ}
+        \item \href{https://github.com/quantumlib/Cirq}{https://github.com/quantumlib/Cirq}
+        \item \href{https://github.com/qutip/qutip}{https://github.com/qutip/qutip}
+        \item \href{https://github.com/XanaduAI/strawberryfields}{https://github.com/XanaduAI/strawberryfields}
     \end{itemize}
     A lot more out there:
-    https://github.com/topics/quantum-computing
+    \href{https://github.com/topics/quantum-computing}{https://github.com/topics/quantum-computing}
 \end{frame}
 
 \begin{frame}
