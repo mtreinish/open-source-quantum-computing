@@ -127,7 +127,8 @@
                 \item SDK for working with Noisy Intermediate-Scale Quantum (NISQ) computers
                 \item Provides a Python interface to write quantum programs
                 \item Apache 2.0 License
-                \item 
+                \item Designed to be backend agnostic
+                \item Includes out-of-the-box local simulators and support for running on IBMQ
             \end{itemize}
         \column{.5\textwidth}
             \includegraphics[width=\textwidth]{qiskit_logo.png}
@@ -146,9 +147,11 @@
     \begin{columns}
         \column{.4\textwidth}
             \begin{itemize}
-                \item The bloch 
-                \item Measure along Z
-                \item 
+                \item The bloch sphere provides a represetation of qubit state
+                \item State can be at any point along surface of sphere
+                \item Measuring a qubit occurs along the Z axis. (also called basis states)
+                \item Measuring a qubit is irreversible and will either be 0
+                      or 1
             \end{itemize}
         \column{.6\textwidth}
             \centering
@@ -157,21 +160,14 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Multiple Qubits}
-    
-\end{frame}
-
-\begin{frame}
-    \frametitle{The Complexity and Power of Quantum Information}
-\end{frame}
-
 \subsection{Quantum Gates and Quantum Circuits}
 \begin{frame}
     \frametitle{Quantum Gates}
-\end{frame}
-
-\begin{frame}
+    \begin{itemize}  
+        \item Quantum Logic Gates are used perform operations on qubits
+        \item Each gate is reversible
+        \item 
+    \end{itemize}
     \begin{columns}[onlytextwidth]
         \begin{column}{.333\textwidth}
             \centering
@@ -181,16 +177,6 @@
 	 	            \lstick{\ket{0}} & \gate{X} & \qw & \qw\\
             	}
             \end{equation*} \\
-            \begin{equation*}
-                \Qcircuit @C=0.5em @R=0.0em @!R {
-    	         	\lstick{\ket{0}} & \gate{Y} & \qw & \qw\\
-    	        }
-            \end{equation*} \\
-            \begin{equation*}
-                \Qcircuit @C=0.5em @R=0.0em @!R {
-    	         	\lstick{\ket{0}} & \gate{Z} & \qw & \qw\\
-    	        }
-            \end{equation*}
         \end{column}
         \begin{column}{.333\textwidth}
             \centering
@@ -199,49 +185,81 @@
                 0 & 1\\
                 1 & 0 \\
             \end{bmatrix}\]\\
-            \[\begin{bmatrix}
-                0 & -\iu \\
-                \iu & 0 \\
-            \end{bmatrix}\] \\
-            \[\begin{bmatrix}
-                1 & 0 \\
-                0 & -1\\
-            \end{bmatrix}\]
         \end{column}
         \begin{column}{.333\textwidth}
             \centering
             \textbf{Bloch Sphere}
             \includegraphics[width=\textwidth]{gate_x_bloch.png}\\
-            \includegraphics[width=\textwidth]{gate_z_bloch.png}\\
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Superposition and Hadamard Gate}
+    \frametitle{Superposition}
+    \begin{itemize}
+    \item Identically prepared qubits can still behave randomly
+    \item The randomness is in inherent in nature
+    \end{itemize}
     \begin{columns}
         \column{.5\textwidth}
+            \centering
+            \LARGE \textbf{$\ket{0}$} \\
+            \includegraphics[width=.4\textwidth]{bloch_fresh.png} \\
+            \LARGE \textbf{$\ket{1}$} \\
+            \includegraphics[width=.4\textwidth]{bloch_x.png}\\
+        \column{.5\textwidth}
+            \centering
+            \LARGE \textbf{$\ket{0} + \ket{1}$} \\
+            \includegraphics[width=.5\textwidth]{bloch_hadamard.png}
+    \end{columns}
+\end{frame}
+\begin{frame}
+    \frametitle{Hadamard Gate}
+    \begin{columns}
+        \column{.5\textwidth}
+        \centering
+        \textbf{Gate}
         \begin{equation*}
             \Qcircuit @C=0.5em @R=0.0em @!R {
 	 	        \lstick{\ket{0}} & \gate{H} & \qw & \qw\\
     	     }
         \end{equation*}
         \column{.5\textwidth}
+        \centering
+        \textbf{Matrix Form}
         \[\frac{1}{\sqrt{2}} \begin{bmatrix}
             1 & 1 \\
             1 & -1 \\
         \end{bmatrix}\]
     \end{columns}
-    \includegraphics[width=\textwidth]{gate_h_bloch.png}
+    \centering
+    \includegraphics[width=.75\textwidth]{gate_h_bloch.png}
 \end{frame}
 
 \begin{frame}
     \frametitle{Qubit Phase}
+    \begin{itemize}
+        \item While qubits are read along the basis vectors
+    \end{itemize}
+
+
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Multiple Qubits}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{The Complexity and Power of Quantum Information}
 
 \end{frame}
 
 \begin{frame}
     \frametitle{Controlled Not Gate}
+    \centering
+    \textbf{CNOT flips the \textit{target} bit if the \textit{control} bit is 1}
 
     \begin{equation*}
         \Qcircuit {
@@ -249,15 +267,12 @@
             \lstick{a\ket{0} + b\ket{1}} &  \targ & \rstick{a\ket{0} + b\ket{1}} \qw \\
     }
     \end{equation*}
-
     \begin{equation*}
         \Qcircuit {
             \lstick{\ket{1}} & \ctrl{1} & \rstick{\ket{1}} \qw\\ 
             \lstick{a\ket{0} + b\ket{1}} & \targ & \rstick{b\ket{0} + a\ket{1}} \qw\\
     }
     \end{equation*}
-    \centering
-    \textbf{CNOT flips the \textit{target} bit if the \textit{control} bit is 1}
 \end{frame}
 
 \begin{frame}
@@ -273,6 +288,10 @@
 	 	\lstick{c0_{0}: 0} & \cw & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-3] & \cw & \cw\\
 	 }
     \end{equation*}
+    \begin{itemize}
+        \item Each row represents a bit, either quantum or classical
+        \item 
+    \end{itemize}
 \end{frame}
 
 \section{Example Application}
@@ -331,18 +350,24 @@
                 \centering
                 \includegraphics[width=\textwidth]{quantum_oracle.jpg}
           \column{.7\textwidth}
-			$O(1)$
+            $\mathcal{0}(1)$
 	\end{columns}
 \end{frame}
 
 \begin{frame}
     \frametitle{Phase Kickback}
+    \[
+        (\ket{0} + \ket{1})(\ket{0}  - \ket{1}) = \ket{00} - \ket{01} + \ket{10} - \ket{11})
+    \]
     \begin{equation*}
         \Qcircuit {
             \lstick{\ket{0}} & \gate{H} \barrier[-1.65em]{1} & \ctrl{1} \barrier[-1.65em]{1} & \gate{H} & \rstick{\ket{1}} \qw\\ 
             \lstick{\ket{1}} & \gate{H} & \targ & \gate{H} & \rstick{\ket{1}} \qw\\
     }
     \end{equation*}
+    \[
+        \ket{00} - \ket{01} - \ket{10} + \ket{11} = (\ket{0} {\textbf{\color{red}-}} \ket{1})(\ket{0}  - \ket{1})
+    \]
 \end{frame}
 
 \begin{frame}
@@ -371,7 +396,11 @@
 \subsection{Other Open Source Tools}
 \begin{frame}
     \frametitle{Open Source in Quantum Computing}
-
+    \begin{itemize}
+        \item The tools for developing quantum programs are almost all open
+        \item Foster collaboaration while the field is just taking off
+        \item 
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -403,10 +432,10 @@
 \begin{frame}
 \frametitle{Where to get more information}
     \begin{itemize}
-        \item Overview and Comparison of Gate Level Quantum Software Platforms: \href{https://arxiv.org/abs/1807.02500}{https://arxiv.org/abs/1807.02500}
         \item Qiskit: \href{https://qiskit.org/}{https://qiskit.org/}
         \item IBM Q Experience: \href{https://quantumexperience.ng.bluemix.net/qx}{https://quantumexperience.ng.bluemix.net/qx}
         \item Tutorials on Quantum Computing and Qiskit: \href{https://github.com/Qiskit/qiskit-tutorials}{https://github.com/Qiskit/qiskit-tutorials}
+        \item 
     \end{itemize}
 \end{frame}
 
