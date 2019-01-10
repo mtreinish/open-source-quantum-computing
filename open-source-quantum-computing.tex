@@ -127,7 +127,6 @@
         \column{.5\textwidth}
             \begin{itemize}
                 \item SDK for working with Noisy Intermediate-Scale Quantum (NISQ) computers
-                \item Provides a Python interface to write quantum programs
                 \item Apache 2.0 License
                 \item Designed to be backend agnostic
                 \item Includes out-of-the-box local simulators and support for running on IBMQ
@@ -151,7 +150,7 @@
                 \item Is the base layer for applications, provides interface to hardware and simulators
                 \item Provides an SDK for working with quantum circuits
                 \item Compiles circuits to run on different backends
-                \item
+                \item Written in Python
            \end{itemize}
         \column{.5\textwidth}
             \centering
@@ -160,6 +159,7 @@
 \end{frame}
 
 \section{Quantum Information Theory}
+\subsection{The Qubit}
 \begin{frame}
     \frametitle{The Qubit}
     \begin{columns}
@@ -170,7 +170,7 @@
                 \item Measuring a qubit occurs along the Z axis. (also called basis states)
                 \item Measuring a qubit is irreversible and will either be 0
                       or 1
-                \item Qubits start at \ket{0}
+                \item Qubits initialzed to \ket{0}
             \end{itemize}
         \column{.6\textwidth}
             \centering
@@ -179,13 +179,29 @@
     \end{columns}
 \end{frame}
 
-\subsection{Quantum Gates and Quantum Circuits}
+\begin{frame}
+    \frametitle{Qubit Phase}
+    \begin{columns}
+    \column{.4\textwidth}
+        \begin{itemize}
+            \item While qubits are read along the basis vectors you can
+                still use the other dimensions
+            \item The phase can be leveraged to encode more information in the qubit
+        \end{itemize}
+        \column{.6\textwidth}
+            \centering
+            \textbf{Phase is $\phi$:}
+            \includegraphics[width=\textwidth]{bloch_angles.png}
+    \end{columns}
+\end{frame}
+
+\subsection{Quantum Gates}
 \begin{frame}
     \frametitle{Quantum Gates}
     \begin{itemize}  
         \item Quantum Logic Gates are used perform operations on qubits
-        \item Each gate is reversible
-        \item 
+        \item Gates are reversible
+        \item Gates can be represented as unitary matrices
     \end{itemize}
     \begin{columns}[onlytextwidth]
         \begin{column}{.333\textwidth}
@@ -213,6 +229,7 @@
     \end{columns}
 \end{frame}
 
+\subsection{Superposition and Hadamards}
 \begin{frame}
     \frametitle{Superposition}
     \begin{itemize}
@@ -229,9 +246,10 @@
         \column{.5\textwidth}
             \centering
             \LARGE \textbf{$\ket{0} + \ket{1}$} \\
-            \includegraphics[width=.5\textwidth]{bloch_hadamard.png}
+            \includegraphics[width=.5\textwidth]{bloch_hadamard.png}\\
     \end{columns}
 \end{frame}
+
 \begin{frame}
     \frametitle{Hadamard Gate}
     \begin{columns}
@@ -256,55 +274,27 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Qubit Phase}
-    \begin{itemize}
-        \item While qubits are read along the basis vectors there is dimension
-        \item The phase can be leveraged to encode more information in the qubit
-
-    \end{itemize}
-    
-\end{frame}
-
-\begin{frame}
     \frametitle{Hadamard and Phase}
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{Quantum Circuits}
-    \textbf{Putting it together you build a circuit like:}
+    \textbf{Hadamard gates are self inverses:}
+    \centering
     \begin{equation*}
-        \Qcircuit @C=0.5em @R=0.0em @!R {
-        \lstick{q0_{2}: \ket{0}} & \gate{X} & \gate{H} & \qw & \meter & \qw & \qw & \qw & \qw\\
-        \lstick{q0_{1}: \ket{0}} & \gate{X} & \gate{H} & \qw & \qw & \meter & \qw & \qw\\
-        \lstick{q0_{0}: \ket{0}} & \qw & \gate{H} &  \qw & \qw & \qw & \meter & \qw & \qw\\
-	 	\lstick{c0_{2}: 0} & \cw & \cw & \cw & \cw \cwx[-3] & \cw & \cw & \cw & \cw\\
-	 	\lstick{c0_{1}: 0} & \cw & \cw & \cw & \cw & \cw \cwx[-3] & \cw & \cw & \cw\\
-	 	\lstick{c0_{0}: 0} & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-3] & \cw & \cw\\
-	 }
+        \Qcircuit {
+            \lstick{\ket{0}} & \gate{H} & \qw & \mbox{\ket{0} + \ket{1}} & \hspace{5em} & \gate{H} & \rstick{\ket{0}} \qw
+        }
+    \end{equation*} \\
+    \begin{equation*}
+        \Qcircuit {
+            \lstick{\ket{1}} & \gate{H} & \qw & \mbox{\ket{0} {\color{red} \textbf{-}} \ket{1}} & \hspace{5em} & \gate{H} & \rstick{\ket{1}} \qw \\
+            & & & \mbox{\color{red} Phase} & & &
+        }
     \end{equation*}
-    \begin{itemize}
-        \item Each row represents a bit, either quantum or classical
-        \item The operations are performed each qubit left to right
-        \item Shows depdencies of operations
-    \end{itemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Multiple Qubits}
-    
-\end{frame}
-
-\begin{frame}
-    \frametitle{The Complexity and Power of Quantum Information}
-    
-\end{frame}
-
+\subsection{CNOT Gate}
 \begin{frame}
     \frametitle{Controlled Not Gate}
     \centering
     \textbf{CNOT flips the \textit{target} bit if the \textit{control} bit is 1}
-
     \begin{equation*}
         \Qcircuit {
             \lstick{\ket{0}}  & \ctrl{1} & \rstick{\ket{0}} \qw \\ 
@@ -318,6 +308,27 @@
             \lstick{a\ket{0} + b\ket{1}} & \targ & \rstick{b\ket{0} + a\ket{1}} \qw\\
     }
     \end{equation*}
+\end{frame}
+
+\subsection{Quantum Circuits}
+\begin{frame}
+    \frametitle{Quantum Circuits}
+    \textbf{Putting it together you build a circuit like:}
+    \begin{equation*}
+        \Qcircuit @C=0.5em @R=0.0em @!R {
+            \lstick{q0_{2}: \ket{0}} & \gate{X} & \gate{H} & \ctrl{2} &\qw & \meter & \qw & \qw & \qw & \qw\\
+        \lstick{q0_{1}: \ket{0}} & \gate{X} & \gate{H} & \qw & \qw & \qw & \meter & \qw & \qw\\
+        \lstick{q0_{0}: \ket{0}} & \qw & \gate{H} & \targ &  \qw & \qw & \qw & \meter & \qw & \qw\\
+	 	\lstick{c0_{2}: 0} & \cw & \cw & \cw & \cw & \cw \cwx[-3] & \cw & \cw & \cw & \cw\\
+	 	\lstick{c0_{1}: 0} & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-3] & \cw & \cw & \cw\\
+	 	\lstick{c0_{0}: 0} & \cw & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-3] & \cw & \cw\\
+	 }
+    \end{equation*}
+    \begin{itemize}
+        \item Each row represents a bit, either quantum or classical
+        \item The operations are performed each qubit left to right
+        \item Shows depdencies of operations
+    \end{itemize}
 \end{frame}
 
 \section{Example Application}
