@@ -247,6 +247,7 @@
             \centering
             \LARGE \textbf{$\ket{0} + \ket{1}$} \\
             \includegraphics[width=.5\textwidth]{bloch_hadamard.png}\\
+            \textbf{50/50 chance of being \ket{0} or \ket{1}}
     \end{columns}
 \end{frame}
 
@@ -386,7 +387,7 @@
     \frametitle{Quantum Oracle}
     \begin{columns}
         \begin{column}{.3\textwidth}
-            \includegraphics[width=\textwidth]{quantum_oracle.jpg}
+            \includegraphics[width=1.2\textwidth]{quantum_oracle.jpg}
         \end{column}
         \begin{column}{.7\textwidth}
             \begin{equation*}
@@ -408,7 +409,7 @@
 \begin{frame}
     \frametitle{Quantum Oracle Implementation}
     \centering
-    {\color{red}\textbf{$S = 0101$}}
+    {\color{red}\textbf{$S = 1001$}}
     \begin{equation*}
         \Qcircuit {
             \lstick{\ket{x_{0}}} & \qw & \ctrl{4} & \qw  & \qw \\
@@ -459,7 +460,8 @@
     \frametitle{Full Circuit for a Quantum Oracle}
     \begin{equation*}
       \Qcircuit @C=0.5em @R=0.0em @!R {
-    	   \lstick{q_{0}: \ket{0}} & \qw & \qw \barrier{4} & \gate{H} & \qw \barrier{4} & \ctrl{4} & \qw & \qw \barrier{4} & \gate{H} & \qw \barrier[-1.15em]{4} & \qw & \qw & \qw & \meter & \qw & \qw\\
+           & & & & & \hspace{1em} \mbox{\textbf{The Oracle}} & & & & & & & & & & \\
+           \lstick{q_{0}: \ket{0}} & \qw & \qw & \gate{H} & \qw & \ctrl{4} & \qw & \qw & \gate{H} & \qw & \qw & \qw & \qw & \meter & \qw & \qw\\
     	   \lstick{q_{1}: \ket{0}} & \qw & \qw & \gate{H} & \qw & \qw & \qw & \qw & \gate{H} & \qw & \qw & \qw & \meter & \qw & \qw & \qw\\
     	   \lstick{q_{2}: \ket{0}} & \qw & \qw & \gate{H} & \qw & \qw & \qw & \qw & \gate{H} & \qw & \qw & \meter & \qw & \qw & \qw & \qw\\
     	   \lstick{q_{3}: \ket{0}} & \qw & \qw & \gate{H} & \qw & \qw & \ctrl{1} & \qw & \gate{H} & \qw & \meter & \qw & \qw & \qw & \qw & \qw\\
@@ -467,7 +469,7 @@
            \lstick{res_{0}: 0} & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-5] & \cw & \cw & \rstick{1}\\
     	   \lstick{res_{1}: 0} & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-5] & \cw & \cw & \cw & \rstick{0}\\
     	   \lstick{res_{2}: 0} & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-5] & \cw & \cw & \cw & \cw & \rstick{0}\\
-    	   \lstick{res_{3}: 0} & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-5] & \cw & \cw & \cw & \cw & \cw & \rstick{1}\\
+           \lstick{res_{3}: 0} & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-5] & \cw & \cw & \cw & \cw & \cw & \rstick{1} \gategroup{2}{5}{6}{8}{.9em}{^\}}
     	 }
     \end{equation*}
     \centering
