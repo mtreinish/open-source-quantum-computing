@@ -121,7 +121,6 @@
     \includegraphics[width=\textwidth]{timeline.png}
 \end{frame}
 
-
 \begin{frame}
     \frametitle{What is Qiskit?}
     \begin{columns}
@@ -140,7 +139,7 @@
 \begin{frame}
     \frametitle{Qiskit Elements}
     \centering
-    \includegraphics[width=.9\textwidth]{qiskit-components.jpeg}
+    \includegraphics[width=.99\textwidth]{qiskit-components.jpeg}
 \end{frame}
 
 \begin{frame}
@@ -174,25 +173,10 @@
                 \item Qubits initialzed to \ket{0}
             \end{itemize}
         \column{.6\textwidth}
-            \centering
-            \textbf{Bloch Sphere:}
-            \includegraphics[width=\textwidth]{bloch_angles.png}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Qubit Phase}
-    \begin{columns}
-    \column{.4\textwidth}
-        \begin{itemize}
-            \item While qubits are read along the basis vectors you can
-                still use the other dimensions
-            \item The phase can be leveraged to encode more information in the qubit
-        \end{itemize}
-        \column{.6\textwidth}
-            \centering
-            \textbf{Phase is $\phi$:}
-            \includegraphics[width=\textwidth]{bloch_angles.png}
+            \begin{center}
+                \textbf{Bloch Sphere:}
+            \includegraphics[height=.85\textheight]{bloch_angles.png}
+        \end{center}
     \end{columns}
 \end{frame}
 
@@ -204,30 +188,27 @@
         \item Gates are reversible
         \item Gates can be represented as unitary matrices
     \end{itemize}
-    \begin{columns}[onlytextwidth]
-        \begin{column}{.333\textwidth}
-            \centering
-            \textbf{Gate}
-            \begin{equation*}
-                \Qcircuit @C=0.5em @R=0.0em @!R {
-	 	            \lstick{\ket{0}} & \gate{X} & \qw & \qw\\
-            	}
-            \end{equation*} \\
-        \end{column}
-        \begin{column}{.333\textwidth}
-            \centering
-            \textbf{Matrix Form}
-            \[\begin{bmatrix}
-                0 & 1\\
-                1 & 0 \\
-            \end{bmatrix}\]\\
-        \end{column}
-        \begin{column}{.333\textwidth}
-            \centering
-            \textbf{Bloch Sphere}
-            \includegraphics[width=\textwidth]{gate_x_bloch.png}\\
-        \end{column}
-    \end{columns}
+    \centering
+    \includegraphics[width=.9\textwidth]{gate_x_bloch.png}
+%    \begin{columns}[onlytextwidth]
+%        \begin{column}{.333\textwidth}
+%            \centering
+%            \textbf{Gate}
+%            \begin{equation*}
+%                \Qcircuit @C=0.5em @R=0.0em @!R {
+%	 	            \lstick{\ket{0}} & \gate{X} & \qw & \qw\\
+%            	}
+%            \end{equation*} \\
+%        \end{column}
+%        \begin{column}{.333\textwidth}
+%            \centering
+%            \textbf{Matrix Form}
+%            \[\begin{bmatrix}
+%                0 & 1\\
+%                1 & 0 \\
+%            \end{bmatrix}\]\\
+%        \end{column}
+%    \end{columns}
 \end{frame}
 
 \subsection{Superposition and Hadamards}
@@ -254,25 +235,41 @@
 
 \begin{frame}
     \frametitle{Hadamard Gate}
-    \begin{columns}
-        \column{.5\textwidth}
-        \centering
-        \textbf{Gate}
-        \begin{equation*}
-            \Qcircuit @C=0.5em @R=0.0em @!R {
-	 	        \lstick{\ket{0}} & \gate{H} & \qw & \qw\\
-    	     }
-        \end{equation*}
-        \column{.5\textwidth}
-        \centering
-        \textbf{Matrix Form}
-        \[\frac{1}{\sqrt{2}} \begin{bmatrix}
-            1 & 1 \\
-            1 & -1 \\
-        \end{bmatrix}\]
-    \end{columns}
+%    \begin{columns}
+%        \column{.5\textwidth}
+%        \centering
+%        \textbf{Gate}
+%        \begin{equation*}
+%            \Qcircuit @C=0.5em @R=0.0em @!R {
+%	 	        \lstick{\ket{0}} & \gate{H} & \qw & \qw\\
+%    	     }
+%        \end{equation*}
+%        \column{.5\textwidth}
+%        \centering
+%        \textbf{Matrix Form}
+%        \[\frac{1}{\sqrt{2}} \begin{bmatrix}
+%            1 & 1 \\
+%            1 & -1 \\
+%        \end{bmatrix}\]
+%    \end{columns}
     \centering
-    \includegraphics[width=.75\textwidth]{gate_h_bloch.png}
+    \includegraphics[width=\textwidth]{gate_h_bloch.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Qubit Phase}
+    \begin{columns}
+    \column{.4\textwidth}
+        \begin{itemize}
+            \item While qubits are read along the basis vectors you can
+                still use the other dimensions
+            \item The phase can be leveraged to encode more information in the qubit
+        \end{itemize}
+        \column{.6\textwidth}
+            \centering
+            \textbf{Phase is $\phi$:}
+            \includegraphics[height=.85\textwidth]{bloch_angles.png}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -420,13 +417,14 @@
             \lstick{\ket{tmp}} & \qw & \targ & \targ & \qw
         }
     \end{equation*}
-    $\ket{x_{3} \cdot s_{3} \oplus x_{2} \cdot s_{2} \oplus x_{1} \cdot s_{1} \oplus x_{0} \cdot s_{0} \oplus}$
+    {\color{red}1 \hspace{25pt} 0 \hspace{25pt} 0 \hspace{25pt} 1 \hspace{35pt} }\\
+    $\ket{x_{3} \cdot s_{3} \oplus x_{2} \cdot s_{2} \oplus x_{1} \cdot s_{1} \oplus x_{0} \cdot s_{0} \oplus tmp}$
 \end{frame}
 
 \begin{frame}
     \frametitle{Phase Kickback}
     \centering
-    \only<1->{$(\ket{0} + \ket{1})(\ket{0}  - \ket{1})$}\onslide<2->{$ = \ket{00} - \ket{01} + \ket{10} - \ket{11})$}\\
+    \only<1->{$(\ket{0} + \ket{1})(\ket{0}  - \ket{1})$}\onslide<2->{$ = \ket{00} - \ket{01} + \ket{10} - \ket{11}$}\\
     \only<2>{Expand it}
     \only<1-2>{
     \begin{equation*}
@@ -489,7 +487,7 @@
     \begin{itemize}
         \item The tools for developing quantum programs are almost all open
         \item Foster collaboaration while the field is just taking off
-        \item Learn and build of history of development of classical computers
+        \item Learning from the history of development of classical computers
     \end{itemize}
 \end{frame}
 
@@ -511,10 +509,10 @@
     \begin{itemize}
         \item Quantum Computing is about solving problems that we can't with
             classical computers
-        \item It's not just in labs anymore, quantum computing is accessible by
-            everyone now
         \item It's still very early for quantum computers
-        \item Open source software is playing a key role early on
+        \item Not just in labs anymore, quantum computing is accessible by
+            everyone now
+        \item Open source software is playing a key role in the development of quantum computers
     \end{itemize}
 \end{frame}
 
@@ -525,8 +523,34 @@
         \item Qiskit: \href{https://qiskit.org/}{https://qiskit.org/}
         \item IBM Q Experience: \href{https://quantumexperience.ng.bluemix.net/qx}{https://quantumexperience.ng.bluemix.net/qx}
         \item Tutorials on Quantum Computing and Qiskit: \href{https://github.com/Qiskit/qiskit-tutorials}{https://github.com/Qiskit/qiskit-tutorials}
-        \item 
     \end{itemize}
 \end{frame}
+
+\section{Backup Slides}
+\begin{frame}
+    \frametitle{BACKUP SLIDES}
+\end{frame}
+\subsection{Entanglement}
+\begin{frame}
+    \frametitle{Entanglement}
+    \begin{columns}
+        \column{.45\textwidth}
+            \begin{itemize}
+                \item 2 qubits too far apart to influence each other can behave in a way that are \textbf{individually random} but are \textbf{strongly correlated}
+                \item The state of an n-qubit system cannot (in general) be written as the state of its individual components.
+                \item To simulate entanglement you need exponential resources
+                \item CNOT gates are often used to setup entanglements
+            \end{itemize}
+        \column{.45\textwidth}
+        \centering
+            \textbf{One Qubit:}\\
+            ${\color{ibm}a}\ket{0} + {\color{ibm}b}\ket{1}$\\
+            \textbf{Two Qubits:}\\
+            ${\color{ibm}a}\ket{00} + {\color{ibm}b}\ket{01} + {\color{ibm}c}\ket{11}$\\
+            \textbf{Three Qubits:}\\
+            ${\color{ibm}a}\ket{000} + {\color{ibm}b}\ket{001} + {\color{ibm}c}\ket{010} + {\color{ibm}d}\ket{011} + {\color{ibm}e}\ket{100} + {\color{ibm}f}\ket{101} + {\color{ibm}g}\ket{110} + {\color{ibm}h}\ket{111}$\\
+    \end{columns}
+\end{frame}
+
 
 \end{document}
