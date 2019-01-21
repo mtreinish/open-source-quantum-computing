@@ -175,7 +175,9 @@
         \column{.6\textwidth}
             \begin{center}
                 \textbf{Bloch Sphere:}
-            \includegraphics[height=.85\textheight]{bloch_angles.png}
+                \only<1>{\includegraphics[height=.85\textheight]{bloch_angles.png}}
+                \only<2>{\includegraphics[height=.85\textheight]{bloch_fresh.png}}
+                \only<3>{\includegraphics[height=.85\textheight]{bloch_one.png}}
         \end{center}
     \end{columns}
 \end{frame}
@@ -485,8 +487,8 @@
 \begin{frame}
     \frametitle{Open Source in Quantum Computing}
     \begin{itemize}
-        \item The tools for developing quantum programs are almost all open
-        \item Foster collaboaration while the field is just taking off
+        \item Many of the tools for developing quantum programs are open source
+        \item Open source is used to help fosters collaboration
         \item Learning from the history of development of classical computers
     \end{itemize}
 \end{frame}
@@ -521,6 +523,7 @@
 \frametitle{Where to get more information}
     \begin{itemize}
         \item Qiskit: \href{https://qiskit.org/}{https://qiskit.org/}
+        \item Qiskit Terra on Github: \href{https://github.com/Qiskit/qiskit-terra}{https://github.com/Qiskit/qiskit-terra}
         \item IBM Q Experience: \href{https://quantumexperience.ng.bluemix.net/qx}{https://quantumexperience.ng.bluemix.net/qx}
         \item Tutorials on Quantum Computing and Qiskit: \href{https://github.com/Qiskit/qiskit-tutorials}{https://github.com/Qiskit/qiskit-tutorials}
     \end{itemize}
