@@ -165,12 +165,11 @@
     \begin{columns}
         \column{.4\textwidth}
             \begin{itemize}
-                \item The bloch sphere provides a represetation of qubit state
+                \item The bloch sphere provides a representation of qubit state
                 \item State can be at any point along surface of sphere
                 \item Measuring a qubit occurs along the Z axis. (also called basis states)
                 \item Measuring a qubit is irreversible and will either be 0
                       or 1
-                \item Qubits initialzed to \ket{0}
             \end{itemize}
         \column{.6\textwidth}
             \begin{center}
@@ -218,7 +217,7 @@
     \frametitle{Superposition}
     \begin{itemize}
     \item Identically prepared qubits can still behave randomly
-    \item The randomness is in inherent in nature
+    \item The randomness is inherent in nature
     \end{itemize}
     \begin{columns}
         \column{.5\textwidth}
@@ -231,7 +230,7 @@
             \centering
             \LARGE \textbf{$\ket{0} + \ket{1}$} \\
             \includegraphics[width=.5\textwidth]{bloch_hadamard.png}\\
-            \textbf{50/50 chance of being \ket{0} or \ket{1}}
+            \textbf{$\sim$50/50 chance of being \ket{0} or \ket{1}}
     \end{columns}
 \end{frame}
 
@@ -328,7 +327,7 @@
     \begin{itemize}
         \item Each row represents a bit, either quantum or classical
         \item The operations are performed each qubit left to right
-        \item Shows depdencies of operations
+        \item Shows dependencies of operations
     \end{itemize}
 \end{frame}
 
@@ -459,6 +458,7 @@
 
 \begin{frame}
     \frametitle{Full Circuit for a Quantum Oracle}
+    \only<2>{
     \begin{equation*}
       \Qcircuit @C=0.5em @R=0.0em @!R {
            & & & & & \hspace{1em} \mbox{\textbf{The Oracle}} & & & & & & & & & & \\
@@ -473,8 +473,26 @@
            \lstick{res_{3}: 0} & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-5] & \cw & \cw & \cw & \cw & \cw & \rstick{1} \gategroup{2}{5}{6}{8}{.9em}{^\}}
     	 }
     \end{equation*}
+    }
+    \only<1>{
+    \begin{equation*}
+      \Qcircuit @C=0.5em @R=0.0em @!R {
+           \lstick{q_{0}: \ket{0}} & \qw & \qw & \gate{H} & \qw & \multigate{4}{Oracle} & \qw & \gate{H} & \qw & \qw & \qw & \qw & \meter & \qw & \qw\\
+           \lstick{q_{1}: \ket{0}} & \qw & \qw & \gate{H} & \qw & \ghost{Oracle} & \qw & \gate{H} & \qw & \qw & \qw & \meter & \qw & \qw & \qw\\
+           \lstick{q_{2}: \ket{0}} & \qw & \qw & \gate{H} & \qw & \ghost{Oracle} & \qw & \gate{H} & \qw & \qw & \meter & \qw & \qw & \qw & \qw\\
+           \lstick{q_{3}: \ket{0}} & \qw & \qw & \gate{H} & \qw & \ghost{Oracle} & \qw & \gate{H} & \qw & \meter & \qw & \qw & \qw & \qw & \qw\\
+           \lstick{tmp_{0}: \ket{0}} & \gate{X} & \qw & \gate{H} & \qw & \ghost{Oracle} & \qw & \gate{H} & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
+           \lstick{res_{0}: 0} & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-5] & \cw & \cw & \rstick{1}\\
+    	   \lstick{res_{1}: 0} & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-5] & \cw & \cw & \cw & \rstick{0}\\
+    	   \lstick{res_{2}: 0} & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-5] & \cw & \cw & \cw & \cw & \rstick{0}\\
+           \lstick{res_{3}: 0} & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw & \cw \cwx[-5] & \cw & \cw & \cw & \cw & \cw & \rstick{1}
+    	 }
+    \end{equation*}
+    }
+    \only<2>{
     \centering
     \textbf{Where there is a CNOT phase kickback will set the control qubit to state \ket{1}}
+    }
 \end{frame}
 
 \begin{frame}
@@ -531,15 +549,15 @@
 \end{frame}
 
 \section{Backup Slides}
-\begin{frame}
+\begin{frame}[noframenumbering]
     \frametitle{BACKUP SLIDES}
 \end{frame}
 \subsection{Machine Types}
-\begin{frame}
+\begin{frame}[noframenumbering]
     \includegraphics[width=\textwidth]{machine_types.png}
 \end{frame}
 \subsection{Entanglement}
-\begin{frame}
+\begin{frame}[noframenumbering]
     \frametitle{Entanglement}
     \begin{columns}
         \column{.45\textwidth}
