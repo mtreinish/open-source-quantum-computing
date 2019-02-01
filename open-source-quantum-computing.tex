@@ -68,23 +68,33 @@
         Software Engineer - IBM Research\\
         \href{mailto:mtreinish@kortar.org}{mtreinish@kortar.org}\\
         \texttt{mtreinish on Freenode}\\
-        \href{https://github.com/mtreinish/open-source-quantum-computing}{https://github.com/mtreinish/open-source-quantum-computing}
+        \href{https://github.com/mtreinish/open-source-quantum-computing/tree/fossc-2019}{https://github.com/mtreinish/open-source-quantum-computing/tree/fossc-2019}
    }
    {Matthew Treinish}
 }
-\date{January 23, 2019}
+\date{}
 
 \title{Open Source Quantum Computing}
 \begin{document}
 
-\titlepage
-
-\section{What is a Quantum Computer}
-\begin{frame}
-    \includegraphics[width=\textwidth]{Ragnarok.jpg}
-    % All my cryptos broke
+{
+\setbeamertemplate{background canvas}{\includegraphics[width=\paperwidth,height=\paperheight]{fossc-title.png}}
+\setbeamertemplate{footline}{}
+\begin{frame}[noframenumbering]
+    \setbeamercolor{titlelike}{fg=white}
+    \setbeamercolor{structure}{fg=white}
+    \setbeamercolor{normal text}{fg=white}
+    \hypersetup{colorlinks,urlcolor=white}
+    \setbeamercolor{author}{fg=white}
+    \setbeamercolor{date}{fg=white}
+    \setbeamercolor{background}{bg=black}
+    \titlepage{}
 \end{frame}
+}
 
+%\usebackgroundtemplate{
+%    \includegraphics[width=\paperwidth,height=\paperheight]{fossc-background.png}}
+\section{What is a Quantum Computer}
 \newcommand{\iu}{{i\mkern1mu}}
 
 \begin{frame}
@@ -257,39 +267,6 @@
     \includegraphics[width=\textwidth]{gate_h_bloch.png}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Qubit Phase}
-    \begin{columns}
-    \column{.4\textwidth}
-        \begin{itemize}
-            \item While qubits are read along the basis vectors you can
-                still use the other dimensions
-            \item The phase can be leveraged to encode more information in the qubit
-        \end{itemize}
-        \column{.6\textwidth}
-            \centering
-            \textbf{Phase is $\phi$:}
-            \includegraphics[height=.85\textwidth]{bloch_angles.png}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Hadamard and Phase}
-    \textbf{Hadamard gates are self inverses:}
-    \centering
-    \begin{equation*}
-        \Qcircuit {
-            \lstick{\ket{0}} & \gate{H} & \qw & \mbox{\ket{0} + \ket{1}} & \hspace{5em} & \gate{H} & \rstick{\ket{0}} \qw
-        }
-    \end{equation*} \\
-    \begin{equation*}
-        \Qcircuit {
-            \lstick{\ket{1}} & \gate{H} & \qw & \mbox{\ket{0} {\color{red} \textbf{-}} \ket{1}} & \hspace{5em} & \gate{H} & \rstick{\ket{1}} \qw \\
-            & & & \mbox{\color{red} Phase} & & &
-        }
-    \end{equation*}
-\end{frame}
-
 \subsection{CNOT Gate}
 \begin{frame}
     \frametitle{Controlled Not Gate}
@@ -423,40 +400,6 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Phase Kickback}
-    \centering
-    \only<1->{$(\ket{0} + \ket{1})(\ket{0}  - \ket{1})$}\onslide<2->{$ = \ket{00} - \ket{01} + \ket{10} - \ket{11}$}\\
-    \only<2>{Expand it}
-    \only<1-2>{
-    \begin{equation*}
-        \Qcircuit {
-            \lstick{\ket{0}} & \gate{H} \barrier[-1.65em]{1} & \qw \\
-            \lstick{\ket{1}} & \gate{H} & \qw\\
-        }
-    \end{equation*}
-    }
-    \only<3-4>{
-    \begin{equation*}
-        \Qcircuit {
-            \lstick{\ket{0}} & \gate{H} \barrier[-1.65em]{1} & \ctrl{1} & \qw\\
-            \lstick{\ket{1}} & \gate{H} & \targ & \qw \\
-        }
-        \end{equation*}
-    }
-    \only<5>{
-    \begin{equation*}
-        \Qcircuit {
-            \lstick{\ket{0}} & \gate{H} \barrier[-1.65em]{1} & \ctrl{1} \barrier[-1.65em]{1} & \gate{H} & \rstick{\ket{1}} \qw\\
-            \lstick{\ket{1}} & \gate{H} & \targ & \gate{H} & \rstick{\ket{1}} \qw\\
-        }
-    \end{equation*}
-    }
-    \only<3->{$\ket{00} - \ket{01} - \ket{10} + \ket{11}$}\only<4->{$ = (\ket{0} {\textbf{\color{red}-}} \ket{1})(\ket{0} - \ket{1})$}\\
-    \only<4-5>{\color{red}Phase Kickback}
-
-\end{frame}
-
-\begin{frame}
     \frametitle{Full Circuit for a Quantum Oracle}
     \only<2>{
     \begin{equation*}
@@ -508,20 +451,9 @@
         \item Many of the tools for developing quantum programs are open source
         \item Open source is used to help fosters collaboration
         \item Learning from the history of development of classical computers
+        \item Many open source quantum computing projects already exist:
+            \href{https://github.com/topics/quantum-computing}{https://github.com/topics/quantum-computing}
     \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Other Open Source Tools}
-    \begin{itemize}
-        \item \href{https://github.com/rigetticomputing/pyquil}{https://github.com/rigetticomputing/pyquil}
-        \item \href{https://github.com/ProjectQ-Framework/ProjectQ}{https://github.com/ProjectQ-Framework/ProjectQ}
-        \item \href{https://github.com/quantumlib/Cirq}{https://github.com/quantumlib/Cirq}
-        \item \href{https://github.com/qutip/qutip}{https://github.com/qutip/qutip}
-        \item \href{https://github.com/XanaduAI/strawberryfields}{https://github.com/XanaduAI/strawberryfields}
-    \end{itemize}
-    A lot more out there:
-    \href{https://github.com/topics/quantum-computing}{https://github.com/topics/quantum-computing}
 \end{frame}
 
 \begin{frame}
@@ -552,6 +484,75 @@
 \begin{frame}[noframenumbering]
     \frametitle{BACKUP SLIDES}
 \end{frame}
+\section{Qubit Phase}
+\begin{frame}[noframenumbering]
+    \frametitle{Qubit Phase}
+    \begin{columns}
+    \column{.4\textwidth}
+        \begin{itemize}
+            \item While qubits are read along the basis vectors you can
+                still use the other dimensions
+            \item The phase can be leveraged to encode more information in the qubit
+        \end{itemize}
+        \column{.6\textwidth}
+            \centering
+            \textbf{Phase is $\phi$:}
+            \includegraphics[height=.85\textwidth]{bloch_angles.png}
+    \end{columns}
+\end{frame}
+\subsection{Hadamard and Phase}
+\begin{frame}[noframenumbering]
+    \frametitle{Hadamard and Phase}
+    \textbf{Hadamard gates are self inverses:}
+    \centering
+    \begin{equation*}
+        \Qcircuit {
+            \lstick{\ket{0}} & \gate{H} & \qw & \mbox{\ket{0} + \ket{1}} & \hspace{5em} & \gate{H} & \rstick{\ket{0}} \qw
+        }
+    \end{equation*} \\
+    \begin{equation*}
+        \Qcircuit {
+            \lstick{\ket{1}} & \gate{H} & \qw & \mbox{\ket{0} {\color{red} \textbf{-}} \ket{1}} & \hspace{5em} & \gate{H} & \rstick{\ket{1}} \qw \\
+            & & & \mbox{\color{red} Phase} & & &
+        }
+    \end{equation*}
+\end{frame}
+
+\section{Phase Kickback}
+\begin{frame}[noframenumbering]
+    \frametitle{Phase Kickback}
+    \centering
+    \only<1->{$(\ket{0} + \ket{1})(\ket{0}  - \ket{1})$}\onslide<2->{$ = \ket{00} - \ket{01} + \ket{10} - \ket{11}$}\\
+    \only<2>{Expand it}
+    \only<1-2>{
+    \begin{equation*}
+        \Qcircuit {
+            \lstick{\ket{0}} & \gate{H} \barrier[-1.65em]{1} & \qw \\
+            \lstick{\ket{1}} & \gate{H} & \qw\\
+        }
+    \end{equation*}
+    }
+    \only<3-4>{
+    \begin{equation*}
+        \Qcircuit {
+            \lstick{\ket{0}} & \gate{H} \barrier[-1.65em]{1} & \ctrl{1} & \qw\\
+            \lstick{\ket{1}} & \gate{H} & \targ & \qw \\
+        }
+        \end{equation*}
+    }
+    \only<5>{
+    \begin{equation*}
+        \Qcircuit {
+            \lstick{\ket{0}} & \gate{H} \barrier[-1.65em]{1} & \ctrl{1} \barrier[-1.65em]{1} & \gate{H} & \rstick{\ket{1}} \qw\\
+            \lstick{\ket{1}} & \gate{H} & \targ & \gate{H} & \rstick{\ket{1}} \qw\\
+        }
+    \end{equation*}
+    }
+    \only<3->{$\ket{00} - \ket{01} - \ket{10} + \ket{11}$}\only<4->{$ = (\ket{0} {\textbf{\color{red}-}} \ket{1})(\ket{0} - \ket{1})$}\\
+    \only<4-5>{\color{red}Phase Kickback}
+
+\end{frame}
+
 \subsection{Machine Types}
 \begin{frame}[noframenumbering]
     \includegraphics[width=\textwidth]{machine_types.png}
