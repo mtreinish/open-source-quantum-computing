@@ -264,7 +264,25 @@
 %        \end{bmatrix}\]
 %    \end{columns}
     \centering
-    \includegraphics[width=\textwidth]{gate_h_bloch.png}
+    \only<1> {
+        \includegraphics[width=\textwidth]{gate_h_bloch.png}
+    }
+    \only<2> {
+        \includegraphics[width=\textwidth]{double_h_gate_bloch.png}
+    }
+    \only<3> {
+        \begin{equation*}
+            \Qcircuit @C=0.5em @R=0.0em @!R {
+                \lstick{\ket{1}} & \gate{H} & \rstick{\ket{0} - \ket{1}} \qw\\
+    	     }
+        \end{equation*}
+        \begin{columns}
+            \column{.5\textwidth}
+                \includegraphics[width=\textwidth]{bloch_one.png}
+            \column{.5\textwidth}
+                \includegraphics[width=\textwidth]{bloch_h_negative.png}
+        \end{columns}
+    }
 \end{frame}
 
 \subsection{CNOT Gate}
