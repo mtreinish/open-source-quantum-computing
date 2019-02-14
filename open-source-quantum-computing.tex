@@ -277,17 +277,28 @@
     \frametitle{Hadamard and Phase}
     \textbf{Hadamard gates are self inverses:}
     \centering
-    \begin{equation*}
-        \Qcircuit {
-            \lstick{\ket{0}} & \gate{H} & \qw & \mbox{\ket{0} + \ket{1}} & \hspace{5em} & \gate{H} & \rstick{\ket{0}} \qw
+    \only<1> {
+        \begin{equation*}
+            \Qcircuit {
+                \lstick{\ket{0}} & \gate{H} & \qw & \mbox{\ket{0} + \ket{1}} & \hspace{5em} & \gate{H} & \rstick{\ket{0}} \qw
         }
-    \end{equation*} \\
-    \begin{equation*}
-        \Qcircuit {
-            \lstick{\ket{1}} & \gate{H} & \qw & \mbox{\ket{0} {\color{red} \textbf{-}} \ket{1}} & \hspace{5em} & \gate{H} & \rstick{\ket{1}} \qw \\
-            & & & \mbox{\color{red} Phase} & & &
-        }
-    \end{equation*}
+        \end{equation*} \\
+        \includegraphics[width=\textwidth]{double_h_gate_bloch.png}
+    }
+    \only<2> {
+        \begin{equation*}
+            \Qcircuit {
+                \lstick{\ket{1}} & \gate{H} & \qw & \mbox{\ket{0} {\color{red} \textbf{-}} \ket{1}} & \hspace{5em} & \gate{H} & \rstick{\ket{1}} \qw \\
+                & & & \mbox{\color{red} Phase} & & &
+            }
+        \end{equation*}
+        \begin{columns}
+            \column{.5\textwidth}
+            \includegraphics[width=.9\textwidth]{bloch_one.png}
+            \column{.5\textwidth}
+            \includegraphics[width=.9\textwidth]{bloch_h_negative.png}
+        \end{columns}
+    }
 \end{frame}
 
 \subsection{CNOT Gate}
@@ -377,6 +388,7 @@
             \end{flushleft}
             \begin{center}
             \large \textbf{The ideal classical oracle is $\mathcal{O}(n)$}
+%            \lstinputlisting[basicstyle=\tiny,language=python]{classical_oracle.py}
             \end{center}
         \end{column}
     \end{columns}
